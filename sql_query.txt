@@ -1,0 +1,16 @@
+//Create database
+create table users(
+    userid INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100),
+    user_age INT,
+    user_salary INT
+ )
+//For insert
+insert into users values('',"abcd",24,234500);
+//Display
+SELECT * FROM `emp` where emp_id=5;
+SELECT * FROM `emp` where age>=20 and age<=40;
+SELECT * FROM `emp` where age BETWEEN 20 AND 40;
+//DELETE
+DELETE FROM `emp` where emp_id=4
+
