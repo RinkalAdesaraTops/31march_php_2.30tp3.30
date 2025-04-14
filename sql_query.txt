@@ -14,3 +14,19 @@ SELECT * FROM `emp` where age BETWEEN 20 AND 40;
 //DELETE
 DELETE FROM `emp` where emp_id=4
 
+//UPDATE
+update emp SET name="Updatedname",
+age=25
+where id=2
+
+SELECT * FROM `emp` 
+where age NOT IN (20,25);
+
+SELECT * FROM `emp` 
+where age IN (20,25);
+
+SELECT * FROM `emp`
+where name like 'j%';
+
+SELECT * FROM `emp`
+where name like 'a_c%';
