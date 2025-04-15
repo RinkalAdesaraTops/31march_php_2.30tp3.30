@@ -27,6 +27,24 @@ where age IN (20,25);
 
 SELECT * FROM `emp`
 where name like 'j%';
-
+ 
 SELECT * FROM `emp`
 where name like 'a_c%';
+
+
+
+products
+
+category
+cat_id
+name
+
+Subcategory
+subcat_id
+cat_id
+name
+
+product
+catid
+sub_id
+pid
