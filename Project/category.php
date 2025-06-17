@@ -4,6 +4,11 @@ include('sidebar.php');
 include('db.php');
 $sql = "select * from category";
 $res = mysqli_query($conn,$sql);
+if($_GET['id']!=''){
+    $edit = "select * from category where id=".$_GET['id'];
+    $result = mysqli_query($conn,$edit); 
+    $data = mysqli_fetch_assoc($result);
+} 
 ?>
  <div id="page-wrapper">
             <div class="container-fluid">
@@ -24,10 +29,11 @@ $res = mysqli_query($conn,$sql);
                     <div class="col-md-6 col-xs-12">
                         <div class="white-box">
                             <form action="insert.php" method="post" class="form-horizontal form-material">
+                                <input type="hidden" name="cid" value="<?php echo (isset($data))?$data['id']:''?>" >
                                 <div class="form-group">
                                     <label class="col-md-12">Category Name</label>
                                     <div class="col-md-12">
-                                        <input type="text" name="cname" placeholder="category" class="form-control form-control-line"> </div>
+                                        <input type="text" name="cname" placeholder="category" class="form-control form-control-line" value="<?php echo (isset($data))?$data['cname']:''?>"> </div>
                                 </div>
                                 <button class="btn btn-info" type="submit" name="save" value="save">Save Data</button>
                             </form>
@@ -53,7 +59,9 @@ $res = mysqli_query($conn,$sql);
                                             <tr>
                                                 <td><?php echo $row['id'];?></td>
                                                 <td><?php echo $row['cname'];?></td>
-                                                <td>Delete</td>
+                                                <td>
+                                                    <a href="category.php?id=<?php echo $row['id'];?>" class="btn btn-info">Edit</a>
+                                                    <a href="delete.php?id=<?php echo $row['id'];?>" class="btn btn-danger">Delete</a></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
