@@ -10,8 +10,9 @@
                     <li>
                         <a href="category.php" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Category</a>
                     </li>
-                    
-
+                    <li>
+                        <a href="subcategory.php" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Subcategory</a>
+                    </li>
                 </ul>
                 
             </div>
