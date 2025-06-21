@@ -4,11 +4,8 @@ include('sidebar.php');
 include('db.php');
 $sql = "select * from category";
 $res = mysqli_query($conn,$sql);
-if($_GET['id']!=''){
-    $edit = "select * from category where id=".$_GET['id'];
-    $result = mysqli_query($conn,$edit); 
-    $data = mysqli_fetch_assoc($result);
-} 
+$getSubSql = "select s.*,c.cname from subcategory as s, category as c where c.id = s.cid";
+$res_sub =  mysqli_query($conn,$getSubSql);
 ?>
  <div id="page-wrapper">
             <div class="container-fluid">
@@ -28,24 +25,23 @@ if($_GET['id']!=''){
                 <div class="row">
                     <div class="col-md-6 col-xs-12">
                         <div class="white-box">
-                            <form action="insert.php" method="post" class="form-horizontal form-material">
-                                <input type="hidden" name="cid" value="<?php echo (isset($data))?$data['id']:''?>" >
+                            <form action="subins.php" method="post" class="form-horizontal form-material">
+                                <input type="hidden" name="sid" value="<?php echo (isset($data))?$data['id']:''?>" >
                                 <div class="form-group">
                                     <label class="col-sm-12">Select Category</label>
                                     <div class="col-sm-12">
-                                        <select class="form-control form-control-line">
-                                            <option>London</option>
-                                            <option>India</option>
-                                            <option>Usa</option>
-                                            <option>Canada</option>
-                                            <option>Thailand</option>
+                                        <select class="form-control form-control-line" name="cid">
+                                            <option>--select category--</option>
+                                            <?php while($row=mysqli_fetch_assoc($res)) { ?>
+                                                <option value="<?php echo $row['id'];?>"><?php echo $row['cname'];?></option>
+                                                <?php } ?>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">SubCategory Name</label>
                                     <div class="col-md-12">
-                                        <input type="text" name="cname" placeholder="category" class="form-control form-control-line" value="<?php echo (isset($data))?$data['cname']:''?>"> </div>
+                                        <input type="text" name="sname" placeholder="subcategory" class="form-control form-control-line" value="<?php echo (isset($data))?$data['sname']:''?>"> </div>
                                 </div>
                                 <button class="btn btn-info" type="submit" name="save" value="save">Save Data</button>
                             </form>
@@ -62,17 +58,19 @@ if($_GET['id']!=''){
                                         <tr>
                                             <th>#</th>
                                             <th>Category</th>
+                                            <th>Subcategory</th>
                                             <th>Action</th>
                                             
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php while($row=mysqli_fetch_assoc($res)) { ?>
+                                        <?php while($row=mysqli_fetch_assoc($res_sub)) { ?>
                                             <tr>
                                                 <td><?php echo $row['id'];?></td>
                                                 <td><?php echo $row['cname'];?></td>
+                                                <td><?php echo $row['sname'];?></td>
                                                 <td>
-                                                    <a href="category.php?id=<?php echo $row['id'];?>" class="btn btn-info">Edit</a>
+                                                    <a href="subcategory.php?id=<?php echo $row['id'];?>" class="btn btn-info">Edit</a>
                                                     <a href="delete.php?id=<?php echo $row['id'];?>" class="btn btn-danger">Delete</a></td>
                                             </tr>
                                         <?php } ?>
