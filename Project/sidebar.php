@@ -13,6 +13,9 @@
                     <li>
                         <a href="subcategory.php" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Subcategory</a>
                     </li>
+                    <li>
+                        <a href="product.php" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Product</a>
+                    </li>
                 </ul>
                 
             </div>

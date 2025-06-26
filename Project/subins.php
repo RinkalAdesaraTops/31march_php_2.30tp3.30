@@ -7,7 +7,7 @@ include('db.php');
     $sql='';
     if($sid!=''){
         //update
-        $sql ="UPDATE category set `cname`='$cname' where id=".$cid;
+        $sql ="UPDATE subcategory set `sname`='$sname',`cid`=$cid where id=".$sid;
     } else {
         //insert
         $sql = "INSERT INTO subcategory(`id`,`sname`,`cid`) values ('','$sname',$cid)";
